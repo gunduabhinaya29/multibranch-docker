@@ -9,21 +9,21 @@ pipeline {
         }
         stage ("Tag") {
             steps {
-                sh 'docker tag image2 shaikmustafa/paytm:bus'
+                sh 'docker tag image2 gunduabhinaya29/paytm:bus'
             }
         }
-        stage('Push') {
+         stage('push') {
             steps {
-                script {
-                    withDockerRegistry(credentialsId: 'dockerhub') {
-                        sh 'docker push shaikmustafa/paytm:bus'
-                    }
+                script{
+                    withDockerRegistry(credentialsId: 'dockerhub-id') {
+                         sh 'Docker push gunduabhinaya29/paytm:bus'
+                     }
                 }
             }
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name bus-app -p 2222:80 shaikmustafa/paytm:bus'
+                sh 'docker run -itd --name bus-app -p 2222:80 gunduabhinaya29/paytm:bus'
             }
         }
     }
